@@ -342,8 +342,8 @@ header p {
     }
     
     .product-details {
-        grid-template-columns: 1fr;
-        gap: 6px;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px 8px;
     }
     
     .tabs {
