@@ -32,6 +32,30 @@ header h1 {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
+.update-time {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.update-label {
+    font-weight: 500;
+}
+
+.update-value {
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
 header p {
     font-size: 1.2rem;
     opacity: 0.9;

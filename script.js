@@ -4,6 +4,7 @@ let productsData = [];
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
     loadProductData();
+    updateLastModifiedTime();
 });
 
 // 加载商品数据
@@ -189,6 +190,43 @@ function handleImageError(img) {
     `;
     
     img.parentElement.replaceChild(placeholder, img);
+}
+
+// 获取并显示data.json的最后修改时间
+async function updateLastModifiedTime() {
+    try {
+        const response = await fetch('data.json', { method: 'HEAD' });
+        const lastModified = response.headers.get('Last-Modified');
+        
+        if (lastModified) {
+            const date = new Date(lastModified);
+            const formattedDate = date.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+            
+            document.querySelector('#updateTime .update-value').textContent = formattedDate;
+        } else {
+            // 如果无法获取Last-Modified，使用当前时间作为备选
+            const now = new Date();
+            const formattedDate = now.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+            document.querySelector('#updateTime .update-value').textContent = formattedDate;
+        }
+    } catch (error) {
+        console.error('获取文件修改时间失败:', error);
+        document.querySelector('#updateTime .update-value').textContent = '获取失败';
+    }
 }
 
 // 搜索功能（可选扩展）
