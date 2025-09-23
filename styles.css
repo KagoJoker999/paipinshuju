@@ -112,7 +112,7 @@ header p {
 
 /* 商品图片 */
 .product-image {
-    flex: 0 0 180px;
+    flex: 0 0 40%;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -144,7 +144,7 @@ header p {
 
 /* 商品信息 */
 .product-info {
-    flex: 1;
+    flex: 0 0 60%;
     padding: 20px 25px;
     display: flex;
     flex-direction: column;
@@ -249,7 +249,7 @@ header p {
     }
     
     .product-image {
-        flex: 0 0 120px;
+        flex: 0 0 40%;
     }
     
     .product-info {
@@ -313,6 +313,6 @@ header p {
     }
     
     .product-image {
-        flex: 0 0 160px;
+        flex: 0 0 40%;
     }
 }
