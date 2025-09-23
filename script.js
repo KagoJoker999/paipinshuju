@@ -63,7 +63,7 @@ function renderProductGrid(containerId, products) {
         container.innerHTML = `
             <div class="empty-state">
                 <h3>暂无商品</h3>
-                <p>该分类下暂时没有商品数据</p>
+                <p>该区域下暂时没有商品数据</p>
             </div>
         `;
         return;
