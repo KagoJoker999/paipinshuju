@@ -102,10 +102,6 @@ function createProductCard(product) {
                 <h3 class="product-name">${商品名称}</h3>
                 <div class="product-details">
                     <div class="detail-item">
-                        <span class="detail-label">商品编码</span>
-                        <span class="detail-value">${商品编码}</span>
-                    </div>
-                    <div class="detail-item">
                         <span class="detail-label">主仓位</span>
                         <span class="detail-value">${主仓位}</span>
                     </div>
@@ -117,7 +113,7 @@ function createProductCard(product) {
                         <span class="detail-label">样品仓位</span>
                         <span class="detail-value">${样品仓位}</span>
                     </div>
-                    <div class="detail-item" style="grid-column: span 2;">
+                    <div class="detail-item">
                         <span class="detail-label">实际库存数</span>
                         <span class="detail-value stock-number">${实际库存数}</span>
                     </div>
