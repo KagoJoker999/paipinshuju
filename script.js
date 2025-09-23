@@ -84,9 +84,13 @@ function createProductCard(product) {
         实际库存数 = 0
     } = product;
     
-    // 处理图片
+    // 处理图片 - 优化加载失败处理
     const imageHtml = 图片链接 ? 
-        `<img src="${图片链接}" alt="${商品名称}" onerror="this.parentElement.innerHTML='<div class=\\'image-placeholder\\'>图片加载失败</div>'">` :
+        `<img src="${图片链接}" alt="${商品名称}" 
+             onerror="handleImageError(this)" 
+             onload="this.style.opacity='1'" 
+             style="opacity:0; transition: opacity 0.3s ease;"
+             crossorigin="anonymous">` :
         `<div class="image-placeholder">暂无图片</div>`;
     
     return `
@@ -166,7 +170,29 @@ function showError(show) {
 
 // 图片加载错误处理
 function handleImageError(img) {
-    img.parentElement.innerHTML = '<div class="image-placeholder">图片加载失败</div>';
+    // 尝试使用代理服务
+    const originalSrc = img.src;
+    
+    // 如果还没有尝试过代理，则尝试使用代理服务
+    if (!img.dataset.proxyTried) {
+        img.dataset.proxyTried = 'true';
+        // 使用公共代理服务
+        img.src = `https://images.weserv.nl/?url=${encodeURIComponent(originalSrc)}`;
+        return;
+    }
+    
+    // 如果代理也失败，显示占位符
+    const placeholder = document.createElement('div');
+    placeholder.className = 'image-placeholder';
+    placeholder.innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+            <div style="font-size: 2rem; margin-bottom: 10px;">📷</div>
+            <div style="font-size: 0.9rem; color: #666;">图片暂时无法显示</div>
+            <div style="font-size: 0.8rem; color: #999; margin-top: 5px;">商品编码: ${img.alt}</div>
+        </div>
+    `;
+    
+    img.parentElement.replaceChild(placeholder, img);
 }
 
 // 搜索功能（可选扩展）
