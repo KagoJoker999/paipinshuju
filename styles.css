@@ -71,7 +71,7 @@ header p {
     border-radius: 25px;
     padding: 5px;
     backdrop-filter: blur(10px);
-    max-width: 400px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
@@ -79,16 +79,17 @@ header p {
 
 .tab-button {
     flex: 1;
-    padding: 12px 30px;
+    padding: 12px 20px;
     border: none;
     background: transparent;
     color: white;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
+    white-space: nowrap;
 }
 
 .tab-button:hover {
@@ -327,12 +328,12 @@ header p {
     }
     
     .tabs {
-        max-width: 300px;
+        max-width: 350px;
     }
     
     .tab-button {
-        font-size: 0.9rem;
-        padding: 10px 20px;
+        font-size: 0.85rem;
+        padding: 10px 15px;
     }
 }
 
@@ -371,12 +372,12 @@ header p {
     }
     
     .tabs {
-        max-width: 280px;
+        max-width: 320px;
     }
     
     .tab-button {
-        font-size: 0.85rem;
-        padding: 8px 15px;
+        font-size: 0.8rem;
+        padding: 8px 12px;
     }
 }
 

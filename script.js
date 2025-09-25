@@ -52,8 +52,33 @@ function renderProducts() {
         return sampleNumber.toUpperCase().startsWith('B');
     });
     
+    // 佩戴/周边商品：样品序号包含"佩戴"或"周边"
+    const productsAccessory = productsData.filter(product => {
+        const sampleNumber = product.样品序号 || '';
+        return sampleNumber.includes('佩戴') || sampleNumber.includes('周边');
+    });
+    
+    // 按"佩戴"优先，"周边"其次的顺序排序
+    productsAccessory.sort((a, b) => {
+        const sampleA = a.样品序号 || '';
+        const sampleB = b.样品序号 || '';
+        
+        const aIsPeidai = sampleA.includes('佩戴');
+        const bIsPeidai = sampleB.includes('佩戴');
+        const aIsZhoubian = sampleA.includes('周边');
+        const bIsZhoubian = sampleB.includes('周边');
+        
+        // 佩戴优先于周边
+        if (aIsPeidai && bIsZhoubian) return -1;
+        if (aIsZhoubian && bIsPeidai) return 1;
+        
+        // 同类型内按样品序号排序
+        return sampleA.localeCompare(sampleB);
+    });
+    
     renderProductGrid('products-A', productsA);
     renderProductGrid('products-B', productsB);
+    renderProductGrid('products-佩戴/周边', productsAccessory);
 }
 
 // 渲染商品网格
@@ -146,7 +171,7 @@ function showTab(tabName) {
     
     // 激活对应的按钮
     const activeButton = Array.from(tabButtons).find(button => 
-        button.textContent.includes(tabName)
+        button.textContent.includes(tabName) || button.textContent === tabName
     );
     if (activeButton) {
         activeButton.classList.add('active');
@@ -251,6 +276,30 @@ function searchProducts(query) {
         return sampleNumber.toUpperCase().startsWith('B');
     });
     
+    const productsAccessory = filteredProducts.filter(product => {
+        const sampleNumber = product.样品序号 || '';
+        return sampleNumber.includes('佩戴') || sampleNumber.includes('周边');
+    });
+    
+    // 按"佩戴"优先，"周边"其次的顺序排序
+    productsAccessory.sort((a, b) => {
+        const sampleA = a.样品序号 || '';
+        const sampleB = b.样品序号 || '';
+        
+        const aIsPeidai = sampleA.includes('佩戴');
+        const bIsPeidai = sampleB.includes('佩戴');
+        const aIsZhoubian = sampleA.includes('周边');
+        const bIsZhoubian = sampleB.includes('周边');
+        
+        // 佩戴优先于周边
+        if (aIsPeidai && bIsZhoubian) return -1;
+        if (aIsZhoubian && bIsPeidai) return 1;
+        
+        // 同类型内按样品序号排序
+        return sampleA.localeCompare(sampleB);
+    });
+    
     renderProductGrid('products-A', productsA);
     renderProductGrid('products-B', productsB);
+    renderProductGrid('products-佩戴/周边', productsAccessory);
 }

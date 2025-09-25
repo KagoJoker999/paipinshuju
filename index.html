@@ -19,6 +19,7 @@
         <nav class="tabs">
             <button class="tab-button active" onclick="showTab('A')">A区商品</button>
             <button class="tab-button" onclick="showTab('B')">B区商品</button>
+            <button class="tab-button" onclick="showTab('佩戴/周边')">佩戴/周边</button>
         </nav>
 
         <main>
@@ -31,6 +32,12 @@
             <div id="tab-B" class="tab-content">
                 <div class="products-grid" id="products-B">
                     <!-- B类商品将在这里动态生成 -->
+                </div>
+            </div>
+            
+            <div id="tab-佩戴/周边" class="tab-content">
+                <div class="products-grid" id="products-佩戴/周边">
+                    <!-- 佩戴/周边商品将在这里动态生成 -->
                 </div>
             </div>
         </main>
